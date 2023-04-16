@@ -5,3 +5,4 @@ django-bootstrap5==22.2
 django-extensions==3.2.1
 psycopg2-binary==2.9.5
 sqlparse==0.4.3
+djangorestframework==3.14.0

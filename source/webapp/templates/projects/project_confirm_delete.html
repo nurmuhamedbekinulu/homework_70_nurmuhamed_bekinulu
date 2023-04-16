@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Project confirm delete{% endblock %}
+{% block menu %}
+{% if user.is_authenticated %}
+<a class="nav-link" href="{% url 'project_update' project.pk %}">Редактировать Проект</a>
+{% endif %}
+{% endblock %}
+{% block content%}
+<div class="container">
+    <h1>Вы точно хотите удалить проект?</h1>
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title">Заголовок: {{ project.title }}</h5>
+            <p>Описание: {{ project.description|linebreaks }}</p>
+            <p>Дата начала: {{ project.start_date }}</p>
+            <p>Дата окончания: {{ project.completion_date }}</p>
+            <form action="{% url 'project_delete' project.pk %}" method="post">
+                {% csrf_token %}
+                <p><input type="submit" value="Удалить"></p>
+                <p><a href="{% url 'project_index' %}">Отмена</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

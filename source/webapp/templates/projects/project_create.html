@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Создать новый проект{% endblock %}
+{% block content%}
+<h1>Создать новый проект</h1>
+<div class="form  col-8">
+    <form action="{% url 'project_add' %}" method="post">
+        {% include 'projects/partial/project_form_2.html' with button_text='Создать' %}
+    </form>
+</div>
+{% endblock %}

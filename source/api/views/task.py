@@ -14,3 +14,10 @@ class TasktView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         serializer = TasksSerializer(object, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        object = Task.objects.get(id=pk)
+        if not object:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        object.delete()
+        return Response({'id': pk}, status=status.HTTP_204_NO_CONTENT)

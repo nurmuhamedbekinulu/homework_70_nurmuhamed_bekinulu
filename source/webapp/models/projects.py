@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from webapp.managers import ProjectManager
 
 
 class Project(models.Model):
+    objects = ProjectManager()
     title = models.CharField(
         max_length=200,
         null=False,
@@ -38,3 +40,6 @@ class Project(models.Model):
         self.is_deleted = True
         self.deleted_at = timezone.now()
         self.save()
+
+    class Meta:
+        base_manager_name = 'objects'
